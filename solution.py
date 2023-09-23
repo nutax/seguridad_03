@@ -129,6 +129,9 @@ def isValidBlock(newBlock, prevBlock):
     if (newBlock['index'] != prevBlock['index'] + 1 or newBlock['prevHash'] != prevBlock['hash']):
         return False
     
+    block_without_hash = newBlock.copy()
+    block_without_hash['hash'] = ''
+
     curr_hash = generateHash(newBlock)
     if (newBlock['hash'] != curr_hash or not simplePow(curr_hash)):
         return False
